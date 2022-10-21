@@ -1,0 +1,11 @@
+## Interface: 100002
+## Name: Loadout Bindings
+## Notes: Keybinding profiles for talent loadouts
+## Author: Nikketa-Hyjal (US)
+## SavedVariables: LoadoutBindingsDB, LoadoutBindingsDevDB
+
+libs.xml
+Locales\en-us.lua
+LoadoutBindings.lua
+Bindings.lua
+GUI.lua
