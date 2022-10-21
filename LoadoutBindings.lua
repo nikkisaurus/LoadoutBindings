@@ -14,13 +14,13 @@ function addon:OnInitialize()
 end
 
 function addon:OnEnable()
+	-- addon.ACTIVE_PLAYER_SPECIALIZATION_CHANGED = private.LoadBindingSet
 	addon.TRAIT_CONFIG_UPDATED = private.LoadBindingSet
 	addon.TRAIT_TREE_CHANGED = private.LoadBindingSet
-	addon.ACTIVE_PLAYER_SPECIALIZATION_CHANGED = private.LoadBindingSet
 
+	addon:RegisterEvent("ACTIVE_PLAYER_SPECIALIZATION_CHANGED")
 	addon:RegisterEvent("TRAIT_CONFIG_UPDATED")
 	addon:RegisterEvent("TRAIT_TREE_CHANGED")
-	addon:RegisterEvent("ACTIVE_PLAYER_SPECIALIZATION_CHANGED")
 
 	EventUtil.ContinueOnAddOnLoaded("Blizzard_ClassTalentUI", function()
 		private:InitializeGUI()
@@ -46,4 +46,9 @@ function addon:HandleSlashCommand(input)
 		end
 		private:SaveBindingSet(arg)
 	end
+end
+
+function addon:ACTIVE_PLAYER_SPECIALIZATION_CHANGED()
+	ClassTalentFrame.TabSystem:SetTab(2)
+	private:LoadBindingSet()
 end
