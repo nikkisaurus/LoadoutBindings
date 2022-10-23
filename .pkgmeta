@@ -19,7 +19,7 @@ externals:
     Libs/LibAddonUtils-2.0: https://github.com/niketa-wow/LibAddonUtils-2.0
 
 embedded-libraries:
-    - libaddonutils-2.0
+    - libaddonutils-2-0
 
 ignore:
     - README.md

@@ -4,6 +4,10 @@
 ## Author: Nikketa-Hyjal (US)
 ## SavedVariables: LoadoutBindingsDB, LoadoutBindingsDevDB
 
+## X-Curse-Project-ID: 690626
+## X-WoWI-ID: 26428
+## X-Wago-ID: 7nGvM2Kx
+
 libs.xml
 Locales\en-us.lua
 LoadoutBindings.lua
