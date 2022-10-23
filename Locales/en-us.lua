@@ -5,6 +5,7 @@ LibStub("LibAddonUtils-2.0"):Embed(addon)
 
 L.addonName = "Loadout Bindings"
 
+L["Are you sure you want to delete %s?"] = true
 L["Config"] = true
 L["Delete Binding Set"] = true
 L["Duplicate binding set name."] = true

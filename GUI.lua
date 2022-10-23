@@ -41,6 +41,7 @@ function private:InitializeGUI()
 			bindingSets:SetList(private:GetBindingSetNames())
 			deleteBindingSet:SetList(private:GetBindingSetNames())
 			newBindingSet:SetText("")
+			newBindingSet:ClearFocus()
 		else
 			addon:Print(L["Duplicate binding set name."])
 		end
@@ -56,19 +57,52 @@ function private:InitializeGUI()
 	end)
 
 	deleteBindingSet:SetCallback("OnValueChanged", function(_, _, value)
-		for selectionID, bindingSetName in pairs(private.db.global.loadouts) do
-			if bindingSetName == value then
-				if loadout:GetSelectionID() == selectionID then
-					bindingSets:SetValue()
-				end
-				private.db.global.loadouts[selectionID] = nil
-			end
-		end
+		local confirm = private.confirm or AceGUI:Create("Window")
+		private.confirm = confirm
+		confirm:Show()
+		confirm:ReleaseChildren()
+		confirm:SetLayout("Flow")
+		confirm:SetWidth(400)
+		confirm:SetHeight(100)
+		confirm:SetAutoAdjustHeight(true)
+		confirm:SetPoint("TOP", 0, -200)
 
-		private.db.global.bindingSets[value] = nil
-		bindingSets:SetList(private:GetBindingSetNames())
-		deleteBindingSet:SetList(private:GetBindingSetNames())
-		deleteBindingSet:SetValue()
+		local text = AceGUI:Create("Label")
+		text:SetFullWidth(true)
+		text:SetText(format(L["Are you sure you want to delete %s?"], value))
+		confirm:AddChild(text)
+
+		local yes = AceGUI:Create("Button")
+		yes:SetRelativeWidth(1 / 2)
+		yes:SetText(YES)
+		confirm:AddChild(yes)
+
+		yes:SetCallback("OnClick", function()
+			for selectionID, bindingSetName in pairs(private.db.global.loadouts) do
+				if bindingSetName == value then
+					if loadout:GetSelectionID() == selectionID then
+						bindingSets:SetValue()
+					end
+					private.db.global.loadouts[selectionID] = nil
+				end
+			end
+
+			private.db.global.bindingSets[value] = nil
+			bindingSets:SetList(private:GetBindingSetNames())
+			deleteBindingSet:SetList(private:GetBindingSetNames())
+			deleteBindingSet:SetValue()
+			confirm:Hide()
+		end)
+
+		local no = AceGUI:Create("Button")
+		no:SetRelativeWidth(1 / 2)
+		no:SetText(NO)
+		confirm:AddChild(no)
+
+		no:SetCallback("OnClick", function()
+			deleteBindingSet:SetValue()
+			confirm:Hide()
+		end)
 	end)
 
 	addon:SecureHook(loadout, "SetSelectionID", function(_, selectionID)

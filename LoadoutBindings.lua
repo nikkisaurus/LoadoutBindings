@@ -15,7 +15,6 @@ function addon:OnInitialize()
 end
 
 function addon:OnEnable()
-	-- addon.ACTIVE_PLAYER_SPECIALIZATION_CHANGED = private.LoadBindingSet
 	addon.TRAIT_CONFIG_UPDATED = private.LoadBindingSet
 	addon.TRAIT_TREE_CHANGED = private.LoadBindingSet
 
