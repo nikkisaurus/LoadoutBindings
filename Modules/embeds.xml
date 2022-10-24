@@ -2,4 +2,5 @@
     <Include file="Bindings.lua" />
     <Include file="GUI.lua" />
     <Include file="Helpers.lua" />
+    <Include file="Options.lua" />
 </Ui>

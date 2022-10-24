@@ -3,7 +3,7 @@ local addon = LibStub("AceAddon-3.0"):GetAddon(addonName)
 local L = LibStub("AceLocale-3.0"):GetLocale(addonName, true)
 local AceGUI = LibStub("AceGUI-3.0")
 
-local function GetBindingSetNames()
+function private:GetBindingSetNames()
 	local sets = {}
 
 	for setName, _ in pairs(private.db.global.bindingSets) do
@@ -33,7 +33,6 @@ function private:InitializeGUI()
 
 	local bindingSets = AceGUI:Create("Dropdown")
 	bindingSets:SetFullWidth(true)
-	bindingSets:SetList(GetBindingSetNames())
 	bindingSets:SetLabel(L["Loadout"])
 	group:AddChild(bindingSets)
 
@@ -48,7 +47,7 @@ function private:InitializeGUI()
 	group:AddChild(config)
 
 	config:SetCallback("OnClick", function()
-		-- private:InitializeOptions()
+		private:LoadOptions()
 	end)
 
 	private.GUI = {
@@ -65,9 +64,9 @@ function private:InitializeGUI()
 end
 
 function private:UpdateGUI()
+	private.GUI.bindingSets:SetList(private:GetBindingSetNames())
+
 	local selectionID = ClassTalentFrame.TalentsTab.LoadoutDropDown:GetSelectionID()
 		or (C_ClassTalents:GetStarterBuildActive() and -2)
-	if selectionID then
-		private.GUI.bindingSets:SetValue(private.db.char.loadouts[private:GetSpecID()][selectionID])
-	end
+	private.GUI.bindingSets:SetValue(private.db.char.loadouts[private:GetSpecID()][selectionID])
 end

@@ -5,6 +5,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(addonName, true)
 function addon:OnInitialize()
 	private:InitializeDatabase()
 	private:InitializeSlashCommands()
+	private:InitializeOptions()
 end
 
 function addon:OnEnable()

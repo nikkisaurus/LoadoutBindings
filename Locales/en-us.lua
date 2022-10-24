@@ -7,8 +7,10 @@ L.addonName = "Loadout Bindings"
 
 L["Are you sure you want to delete %s?"] = true
 L["Config"] = true
-L["Delete Binding Set"] = true
+L["Delete"] = true
 L["Duplicate binding set name."] = true
 L["Invalid binding set name."] = true
 L["Loadout"] = true
+L["Rename"] = true
+L["Renaming %s"] = true
 L["New Binding Set"] = true

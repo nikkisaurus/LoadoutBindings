@@ -36,20 +36,21 @@ end
 function private:InitializeSlashCommands()
 	local HandleSlashCommand = function(input)
 		input = input and input:trim() or ""
-		local cmd, arg, arg2 = strsplit(" ", input)
+		local cmd, arg = strsplit(" ", input)
 		if cmd == "" then
-		-- TODO: show GUI
+			private:LoadOptions()
 		elseif cmd == "save" then
 			if not arg or arg == "" then
 				self:Print(L["Invalid binding set name."])
 				return
-			elseif private.db.global.bindingSets[arg] and not arg2 then
+			elseif private.db.global.bindingSets[arg] then
 				self:Print(L["Duplicate binding set name."])
 				return
 			end
 			private:SaveBindingSet(arg)
 		end
 	end
+
 	addon:RegisterChatCommand("loadoutbindings", HandleSlashCommand)
 	addon:RegisterChatCommand("lbinds", HandleSlashCommand)
 end
