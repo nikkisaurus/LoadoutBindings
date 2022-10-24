@@ -11,5 +11,4 @@
 libs.xml
 Locales\en-us.lua
 LoadoutBindings.lua
-Bindings.lua
-GUI.lua
+Modules\embeds.xml
