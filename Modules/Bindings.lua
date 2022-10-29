@@ -31,10 +31,10 @@ function private:SaveBindingSet(setName)
 	end
 end
 
-function private:LoadBindingSet()
+function private:LoadBindingSet(loadout)
 	local specID = private:GetSpecID()
 	local activeSet = private.db.char.activeLoadouts[specID]
-	local loadout = activeSet and private.db.char.loadouts[specID][activeSet]
+	local loadout = loadout or (activeSet and private.db.char.loadouts[specID][activeSet])
 	local bindingSet = loadout and private.db.global.bindingSets[loadout]
 	if not bindingSet then
 		return

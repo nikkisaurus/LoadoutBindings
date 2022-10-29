@@ -41,29 +41,9 @@ function private:InitializeGUI()
 		private:LoadBindingSet(value)
 	end)
 
-	local update = AceGUI:Create("Button")
-	update:SetFullWidth(true)
-	update:SetText(L["Update"])
-	group:AddChild(update)
-
-	update:SetCallback("OnClick", function()
-		print(bindingSets:GetValue())
-		-- private:SaveBindingSet()
-	end)
-
-	local config = AceGUI:Create("Button")
-	config:SetFullWidth(true)
-	config:SetText(L["Config"])
-	group:AddChild(config)
-
-	config:SetCallback("OnClick", function()
-		private:LoadOptions()
-	end)
-
 	private.GUI = {
 		group = group,
 		bindingSets = bindingSets,
-		config = config,
 	}
 
 	private:UpdateGUI()
