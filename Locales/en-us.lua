@@ -14,3 +14,4 @@ L["Loadout"] = true
 L["Rename"] = true
 L["Renaming %s"] = true
 L["New Binding Set"] = true
+L["Update"] = true
