@@ -14,7 +14,7 @@ function private:GetBindingSetNames()
 end
 
 function private:InitializeGUI()
-	local tabFrame = ClassTalentFrame.TalentsTab
+	local tabFrame = PlayerSpellsFrame.TalentsFrame
 
 	private:InitializeLoadouts()
 
@@ -37,7 +37,7 @@ function private:InitializeGUI()
 	group:AddChild(bindingSets)
 
 	bindingSets:SetCallback("OnValueChanged", function(_, _, value)
-		private.db.char.loadouts[private:GetSpecID()][tabFrame.LoadoutDropDown:GetSelectionID()] = value
+		private.db.char.loadouts[private:GetSpecID()][tabFrame.LoadSystem:GetLastValidSelectionID()] = value
 		private:LoadBindingSet(value)
 	end)
 
@@ -48,7 +48,7 @@ function private:InitializeGUI()
 
 	private:UpdateGUI()
 
-	addon:SecureHook(tabFrame.LoadoutDropDown, "SetSelectionID", function(_, selectionID)
+	addon:SecureHook(tabFrame.LoadSystem, "SetSelectionID", function(_, selectionID)
 		private.db.char.activeLoadouts[private:GetSpecID()] = selectionID
 	end)
 end
@@ -56,7 +56,7 @@ end
 function private:UpdateGUI()
 	private.GUI.bindingSets:SetList(private:GetBindingSetNames())
 
-	local selectionID = ClassTalentFrame.TalentsTab.LoadoutDropDown:GetSelectionID()
+	local selectionID = PlayerSpellsFrame.TalentsFrame.LoadSystem:GetLastValidSelectionID()
 		or (C_ClassTalents:GetStarterBuildActive() and -2)
 	private.GUI.bindingSets:SetValue(private.db.char.loadouts[private:GetSpecID()][selectionID])
 end

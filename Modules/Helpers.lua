@@ -29,7 +29,7 @@ function private:InitializeLoadouts()
 	end
 
 	C_Timer.After(0.1, function()
-		private.db.char.activeLoadouts[specID] = ClassTalentFrame.TalentsTab.LoadoutDropDown:GetSelectionID()
+		private.db.char.activeLoadouts[specID] = PlayerSpellsFrame.TalentsFrame.LoadSystem:GetLastValidSelectionID()
 	end)
 end
 
@@ -83,7 +83,7 @@ function addon:TRAIT_CONFIG_DELETED(_, selectionID)
 
 	-- If selection is active, update activeLoadouts
 	if private.db.char.activeLoadouts[specID] == selectionID then
-		private.db.char.activeLoadouts[specID] = ClassTalentFrame.TalentsTab.LoadoutDropDown:GetSelectionID()
+		private.db.char.activeLoadouts[specID] = PlayerSpellsFrame.TalentsFrame.LoadSystem:GetLastValidSelectionID()
 			or (C_ClassTalents:GetStarterBuildActive() and -2)
 	end
 end

@@ -1,4 +1,4 @@
-## Interface: 100002
+## Interface: 110000
 ## Name: Loadout Bindings
 ## Notes: Keybinding profiles for talent loadouts
 ## Author: Nikketa-Hyjal (US)
